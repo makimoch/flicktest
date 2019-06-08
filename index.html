@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <meta
+      name="viewport"
+      content="width=device-width, maximum-scale=1,user-scalable=0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="touchBox"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+      $(function() {
+        var box = $("#touchBox")[0];
+        box.addEventListener("touchstart", touchHandler, false);
+        box.addEventListener("touchmove", touchHandler, false);
+        box.addEventListener("touchend", touchHandler, false);
+        function touchHandler(e) {
+          e.preventDefault();
+          var touch = e.touches[0];
+          if (e.type == "touchstart") {
+            $("#txt").text("そのまま横にフリックしてください。");
+          }
+          if (e.type == "touchmove") {
+            $("#txt").text("あ、いい感じです。");
+          }
+          if (e.type == "touchend") {
+            $("#txt").text("フリック終了ぅ〜！");
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
