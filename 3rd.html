@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, maximum-scale=1,user-scalable=0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="main" style="border: solid 1px; height: 400px;"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+      $(function() {
+        $("#main").on("touchstart", onTouchStart); //指が触れたか検知
+        $("#main").on("touchmove", onTouchMove); //指が動いたか検知
+        $("#main").on("touchend", onTouchEnd); //指が離れたか検知
+        var direction, position;
+
+        //スワイプ開始時の横方向の座標を格納
+        function onTouchStart(event) {
+          xposition = getXPosition(event);
+          yposition = getYPosition(event);
+          direction = ""; //一度リセットする
+        }
+
+        //スワイプの方向（left／right）を取得
+        function onTouchMove(event) {
+          if (xposition - getXPosition(event) > 70) {
+            // 70px以上移動しなければスワイプと判断しない
+            direction = "left"; //左と検知
+          } else if (xposition - getXPosition(event) < -70) {
+            // 70px以上移動しなければスワイプと判断しない
+            direction = "right"; //右と検知
+          } else if (yposition - getYPosition(event) < 70) {
+            // 70px以上移動しなければスワイプと判断しない
+            direction = "up"; //右と検知
+          } else if (yposition - getYPosition(event) < -70) {
+            // 70px以上移動しなければスワイプと判断しない
+            direction = "down"; //右と検知
+          }
+        }
+
+        function onTouchEnd(event) {
+          if (direction == "right") {
+            alert("右だよ");
+          } else if (direction == "left") {
+            alert("左だよ");
+          } else if (direction == "up") {
+            alert("上だよ");
+          } else if (direction == "down") {
+            alert("下だよ");
+          }
+        }
+
+        //横方向の座標を取得
+        function getXPosition(event) {
+          return event.originalEvent.touches[0].pageX;
+        }
+        //横方向の座標を取得
+        function getYPosition(event) {
+          return event.originalEvent.touches[0].pageY;
+        }
+      });
+    </script>
+  </body>
+</html>
