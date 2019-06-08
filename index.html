@@ -25,10 +25,10 @@
           e.preventDefault();
           var touch = e.touches[0];
           if (e.type == "touchstart") {
-            $("#txt").text("そのまま横にフリックしてください。");
+            $("#txt").text(touch.pageX);
           }
           if (e.type == "touchmove") {
-            $("#txt").text("あ、いい感じです。");
+            $("#txt").text(touch.pageX);
           }
           if (e.type == "touchend") {
             $("#txt").text("フリック終了ぅ〜！");
